@@ -10,18 +10,27 @@ pipeline {
     stages {
         stage('git clone') {
             steps {
+                ws('/home/ubuntu/backend') {
                 git branch: 'main', credentialsId: 'f339a2ea-e49f-44df-86f8-a7f7229dfd26', url: 'https://github.com/adithya1150/test11.git'
+                }
             }
         }
         stage('starting api') {
             steps {
-                sh 'ls'
+                sh 'ls /home/ubuntu/backend'
                 }
             }
         stage('git clone1') {
             steps {
+                ws ('/home/ubuntu/client') {
                 git branch: 'master', credentialsId: 'f339a2ea-e49f-44df-86f8-a7f7229dfd26', url: 'https://github.com/adithya1150/test.git'
+                }
             }
         }
+        stage('starting api1') {
+            steps {
+                sh 'ls /home/ubuntu/client'
+                }
+        }        
     }
 }
